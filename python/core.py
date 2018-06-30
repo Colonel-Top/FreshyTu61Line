@@ -81,7 +81,14 @@ if  message == "!reg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     
     print("Register Change status to "+onoroff)
     exit()
-
+if  message == "!roundrobin" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
+     
+    import socket
+    print (socket.gethostbyname(socket.gethostname()))
+    
+    
+    print("Register Change status to "+onoroff)
+    exit()
 if  message == "!nreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"nregister\""
     cur.execute(query)
