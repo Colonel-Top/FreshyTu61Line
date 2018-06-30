@@ -65,6 +65,10 @@ for tmp in night:
     if tmp in message:
         print(random.choice(night))
         exit()
+if '!aboutbot' in message:
+    print("Bot: Helecho Secretario\nPurpose: Freshy Registration System")
+    print("Create By: Promsurin Phutthammawong TU82 Computer Engineering #15\nSOS: 0625461939")
+    exit()
 if  message == "!reg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"register\""
     cur.execute(query)
@@ -155,10 +159,7 @@ if '!regpost' in message:
     db.close()
     print("การประกาศถึงสตาฟฝ่ายทะเบียน: \n["+message +"] \nได้ทำการประกาศเรียบร้อย")
     exit()
-if '!aboutbot' in message:
-    print("Bot: Helecho Secretario\nPurpose: Freshy Registration System")
-    print("Create By: Promsurin Phutthammawong TU82 Computer Engineering #15\nSOS: 0625461939")
-    exit()
+
 if '!ann' in message:
     checkmasteradmin()
     line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
