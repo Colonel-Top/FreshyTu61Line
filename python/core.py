@@ -100,7 +100,7 @@ if  message == "!nreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     exit()
 
 def printerror():
-    print("What The Fuck you don't have permission here GTFO")
+    print("Hey Hey! you don't have this permission, Sorry i can't proceed your request bitch")
     exit()
 master = 0
 
@@ -120,7 +120,7 @@ if resultcheck[0] != 0:
     master = 2
 
 if master ==  0 :
-    print("What The Fuck, you don't have this permission here GTFO")
+    print("What The Fuck, you don't have permission here GTFO")
     exit()
 def checkmasteradmin():
     if master != 2:
