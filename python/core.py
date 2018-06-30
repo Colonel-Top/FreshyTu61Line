@@ -100,7 +100,12 @@ if  message == "!nreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     exit()
 
 def printerror():
-    print("Hey Hey! you don't have this permission, Sorry i can't proceed your request bitch")
+    error = ["Hey Hey! you don't have this permission, Sorry i can't proceed your request bitch",
+             "Ahhh i don't think you can use this permission, sorry i'm out",
+             "Hmmmmmm Who dafuq are you, sorry can't proceed",
+             "Error: Out of permission ya",
+             "Nope i won't proceed your request you don't have permission"]
+    print(random.choice(error))
     exit()
 master = 0
 
