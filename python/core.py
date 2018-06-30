@@ -120,7 +120,7 @@ if resultcheck[0] != 0:
     master = 2
 
 if master ==  0 :
-    print("What The Fuck, you don't have permission here GTFO")
+    print("What The Fuck, you don't have this permission here GTFO")
     exit()
 def checkmasteradmin():
     if master != 2:
