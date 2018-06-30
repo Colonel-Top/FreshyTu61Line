@@ -135,7 +135,7 @@ if master ==  0 :
     error = ["Hey Hey! you don't have this permission bitch",
              "What The Fuck, you don't have permission here GTFO",
              "Hmmmmmm Who dafuq are you ?",
-             "Error:You are ran out of permission ya"]
+             "Error: You are ran out of permission ya"]
     print(random.choice(error))
     exit()
 def checkmasteradmin():
