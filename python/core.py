@@ -70,9 +70,7 @@ if '!aboutbot' in message:
     print("Create By: Promsurin Phutthammawong TU82 \nElectric/Computer Engineering #15\nSOS: 0625461939")
     exit()
 if  "quiet" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
-    print("I'm Sorry sir :(");
-    
-    print("Register Change status to "+onoroff)
+    print("I'm Sorry sir :(")
     exit()
 if  message == "!reg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"register\""
