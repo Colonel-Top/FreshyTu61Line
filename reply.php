@@ -7,7 +7,7 @@ require_once './vendor/autoload.php';
 
 setlocale(LC_CTYPE, "en_US.UTF-8");
 
-$channel_token ='channel_token';
+$channel_token ='AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=';
 
 if (count($argv) < 2) {
     return;

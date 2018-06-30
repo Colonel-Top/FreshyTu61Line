@@ -43,10 +43,15 @@ foreach ($json['events'] as $event) {
     $message = str_replace("\n", " ", trim($event['message']['text']));
 
 
-    if($message == "!register")
+    if($message == "!Verify@m@ster")
     {
         $message = $json['events'][0]['source']['userId'];
-        $command = "LANG=en_US.UTF-8 PYTHONIOENCODING=utf-8 python ./python/regstaff.py " . escapeshellarg($message) . " 2>&1";
+        $command = "LANG=en_US.UTF-8 PYTHONIOENCODING=utf-8 python3 ./python/regstaff.py " . escapeshellarg($message) . " 2>&1";
+    }
+    else if($message == "!register")
+    {
+        $message= $json['events'][0]['source']['userId'];
+	$command = "LANG=en_US.UTF-8 PYTHONIOENCODING=utf-8 python3 ./python/regnormal.py " . escapeshellarg($message) . " 2>&1";
     }
     //Execute python chatbot
     else
@@ -56,7 +61,7 @@ foreach ($json['events'] as $event) {
     }
     $response_message = shell_exec($command);
     $response_message = trim($response_message);
-
+//	$response_message = "Hi";
     $post_data = [
         'replyToken' => $replyToken,
         'messages' => [
