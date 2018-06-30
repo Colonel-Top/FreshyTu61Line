@@ -93,6 +93,7 @@ if  message == "!roundrobin":
     print ("[Server: "+socket.gethostname()+" ]")
     exit()
 if  "!sos" in message:
+    line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
     message = message.replace("sos","[SOS]")
     line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(message))
     print ("*Your SOS message has send to Master Administrator\nContact: http://line.me/ti/p/~promsurin")
