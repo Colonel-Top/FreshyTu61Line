@@ -93,8 +93,10 @@ if  message == "!roundrobin":
     print ("[Server: "+socket.gethostname()+" ]")
     exit()
 if  "!sos" in message:
-    import socket
-    print ("*Your SOS message has send to Master Administrator")
+    message = message.replace("sos","[SOS]")
+    line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(message))
+    print ("*Your SOS message has send to Master Administrator\nContact: http://line.me/ti/p/~promsurin")
+    
     exit()
 if  message == "!nreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"nregister\""

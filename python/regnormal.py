@@ -48,7 +48,7 @@ if valuetopush == True:
         db.close()
 
         #print("INSERT INTO LineUserId (No,userId,RegDate) VALUE (%s,%s,%s)"%(str(lastNumber),message,gdate))
-        print('Verify Staff Successful \nWelcome to our system Administrator #'+str(lastId))
+        print('Verify Staff Successful \nWelcome to our system Administrator your ID: #'+str(lastId))
 else:
         print('Verify Staff has closed \nAny Attack or trying breach will log and punishment by law\n//Colonel Master Admin & Developers \nSOS:0625461939')
     
