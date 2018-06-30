@@ -67,7 +67,7 @@ for tmp in night:
         exit()
 if '!aboutbot' in message:
     print("Bot: Helecho Secretario\nPurpose: Freshy Registration System")
-    print("Create By: Promsurin Phutthammawong TU82 Computer Engineering #15\nSOS: 0625461939")
+    print("Create By: Promsurin Phutthammawong TU82 \nElectric/Computer Engineering #15\nSOS: 0625461939")
     exit()
 if  message == "!reg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"register\""
