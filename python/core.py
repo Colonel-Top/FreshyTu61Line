@@ -81,10 +81,13 @@ if  message == "!reg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     
     print("Register Change status to "+onoroff)
     exit()
-if  message == "!roundrobin" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
-     
+if  message == "!roundrobin":
     import socket
-    print (socket.gethostname())
+    print ("[Server: "+socket.gethostname()+" ]")
+    exit()
+if  "!sos" in message:
+    import socket
+    print ("*Your SOS message has send to Master Administrator")
     exit()
 if  message == "!nreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"nregister\""
@@ -141,6 +144,17 @@ def checkmasteradmin():
 def checknormaladmin():
     if master == 0:
         printerror()
+if '!regpost' in message:
+    checkmasteradmin()
+    line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
+    message = message.replace('!regpost','ประกาศสตาฟฝ่ายทะเบียน: ')
+    cur.execute("SELECT userId FROM `LineUserId`")
+    for row in cur:
+        if row[0] != None:
+            line_bot_api.push_message(row[0], TextSendMessage(message))
+    db.close()
+    print("การประกาศถึงสตาฟฝ่ายทะเบียน: \n["+message +"] \nได้ทำการประกาศเรียบร้อย")
+    exit()
 if '!ann' in message:
     checkmasteradmin()
     line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
@@ -149,10 +163,40 @@ if '!ann' in message:
     for row in cur:
         if row[0] != None:
             line_bot_api.push_message(row[0], TextSendMessage(message))
+    cur.execute("SELECT userId FROM `NormalUserId`")
+    for row in cur:
+        if row[0] != None:
+            line_bot_api.push_message(row[0], TextSendMessage(message))
     db.close()
-    print("Announcement: ["+message +"] \nSuccessfully send to all staff")
+    print("การประกาศถึงสตาฟทุกฝ่าย:\n ["+message +"] \nได้ทำการประกาศเรียบร้อย")
     exit()
-
+if '!unreg' == message:
+    if master == 2: #master admin
+        try:
+            query = "DELETE FROM `LineUserId` WHERE `userId` =\""+ sys.argv[2] +"\""
+            cur.execute(query)
+            db.commit()
+            db.close()
+            print("คุณได้ทำการยกเลิกการเป็นสตาฟไลน์เรียบร้อย\nขอให้โชคดี //บอทแอดมินเอลเลทโต้")
+            exit()
+        except Exception as E:
+            print("ERROR: "+str(E))
+            db.rollback()
+            db.close()
+            exit()
+    elif master == 1: #normal admin
+        try:
+            query = "DELETE FROM `NormalUserId` WHERE `userId` =\""+ sys.argv[2] +"\""
+            cur.execute(query)
+            db.commit()
+            db.close()
+            print("คุณได้ทำการยกเลิกการเป็นสตาฟไลน์เรียบร้อย\nขอให้โชคดี //บอทแอดมินเอลเลทโต้")
+            exit()
+        except Exception as E:
+            print("ERROR: "+str(E))
+            db.rollback()
+            db.close()
+            exit()
 if master == 2:
     query = "SELECT state FROM `LineUserId` WHERE `userId` =\""+ sys.argv[2] +"\""
     cur.execute(query)
