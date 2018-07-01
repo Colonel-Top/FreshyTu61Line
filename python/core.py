@@ -94,7 +94,10 @@ for tmp in listinsult:
         'มะพร้าวห้าวยัดปาก','สากกระเบือยัดก้น','คนไททิ้งแผ่นดิน',
         'ไพร่เพื่อทัก','บักหำน้อย','กบฏต่อราชบัลลังก์','ลานจอดนกเอี้ยง']
         prefixinsult = ['ไอ้','อี','อิ','ไอ']
-        print(random.choice(prefixinsult)+""+random.choice(reinsult2)+"ค่ะ\n\nพุดสุภาพๆไม่ได้หรอคะ ?\n[Your Activity will be report")
+        print(random.choice(prefixinsult)+""+random.choice(reinsult2)+"ค่ะ\n\nพุดสุภาพๆไม่ได้หรอคะ ?\n[Your Activity reported to master admin]")
+    
+        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(sys.argv[2]))
+        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage("Submit weird words to you sir"))
         exit()
 for tmp in night:
     if tmp in message:
