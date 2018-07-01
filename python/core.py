@@ -333,7 +333,7 @@ if '!info' == message:
     femaleusers = cur.fetchone()[0]
     cur.execute("SELECT COUNT(id) FROM `BanUserId`")
     banstaff = cur.fetchone()[0]
-    if master == 1:
+    if master >= 1:
         print("[Server Status Report]\n\nยอด Staff ทั่วไป: "+str(normalstaff) + " คน\nยอดคนเข้างานปัจจุบัน: "+str(ticket)+" คน\nยอดน้องลงทะเบียนในระบบ: "+str(users)+" คน")
         if master == 2:
             cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"ชาย\"")
