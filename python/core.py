@@ -314,7 +314,7 @@ if '!regann' in message:
     db.close()
     print("การประกาศถึงสตาฟฝ่ายทะเบียน: \n["+message +"] \nได้ทำการประกาศเรียบร้อย")
     exit()
-if 'info' == message:
+if '!info' == message:
     checknormaladmin()
     #normal
     cur.execute("SELECT COUNT(id) FROM `NormalUserId`")
@@ -342,6 +342,8 @@ if 'info' == message:
         boardfemale = cur.fetchone()[0]
         print("\nยอด Staff ลงทะเบียนหน้างาน: "+str(masterstaff) +" คน\nยอดน้องลงทะเบียนเพศชาย : "+str(maleusers) + " คน\nยอดน้องลงทะเบียนเพศหญิง : "+ str(femaleusers)+ " คน\n")
         print("ยอดน้องเข้างานเพศชาย : "+str(boardmale) + " คน\nยอดน้องเข้างานเพศหญิง : "+ str(boardfemale)  + " คน\n")
+    db.close()
+    exit()
 if '!ann' in message:
     checkmasteradmin()
     line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
