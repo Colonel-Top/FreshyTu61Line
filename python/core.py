@@ -154,7 +154,7 @@ if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
         line_bot_api.push_message(message, TextSendMessage(stringsend))
         db.commit()
         db.close()
-        print("Banned ID: \n"+message+"\nSuccessfully")
+        print("Banned ID: \n"+message+"\nSuccessfully ["+str(lastId) +"]")
         exit()
     except Exception as E:
         print("ไอดีผู้ใช้ผิดค่ะไม่สามารถแบนได้ค่ะ")
