@@ -81,8 +81,6 @@ if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
             print("ท่านได้ทำการยกเลิกการแบนสตาฟไลน์นี้เรียบร้อยค่ะ")
             line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
             line_bot_api.push_message(message, TextSendMessage("คุณได้ถูกทำการปลดแบนจาก Master Administrator เรียบร้อยค่ะ แจ้งปัญหาโทร: 0625461939 หรือ !sos"))
-        db.commit()
-        db.close()
         print("Unbanned ID: "+message+" Successfully")
         exit()
     except Exception as E:
