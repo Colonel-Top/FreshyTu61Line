@@ -59,6 +59,21 @@ db = MySQLdb.connect("10.130.88.38","regcol","skr010527","coltroit" ,use_unicode
 cur = db.cursor()
 
 
+if  "!sos" in message:
+    #line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
+    #message = message.replace("!sos","[SOS]")
+    #line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(message))
+    print ("*Master Administrator\nContact: http://line.me/ti/p/~promsurin\nTelephone:0625461939")
+    
+    exit()
+
+    
+query = "SELECT COUNT(`id`) FROM `BanUserId` WHERE userId =\""+ str(sys.argv[2])+"\""
+cur.execute(query)
+results = cur.fetchone()[0]
+if results != 0:
+    print('คุณถูกแบนโดย Master Administrator\nติดต่อขอปลดแบน:0625461939 หรือ !sos')
+
 now = datetime.now()
 night = ['Goodnight','goodnight','ราตรีสวัสดิ์ค่ะ','กู้ดไนท์ค่ะ','ฝันดีค่ะ','อย่าลืมห่มผ้านะคะ','ราตรีสวัสดิ์ค่ะ','อากาศเปลี่ยนแปลงบ่อยดูแลสุขภาพนะคะ','ฝันดี','ไปนอน']
 listinsult = ['ตาย','บ้า','ห่วย','เกรียน','เหี้ย','สัส','ฟัคยู','ฟัค','หยิ่ง','แย่','useless', 'use less','fuck','suck','dick','shit','bitch','ควย','kuy','noob','นูบ','หรี่','กาก','เวร','สถุน']
@@ -94,7 +109,7 @@ for tmp in listinsult:
         'มะพร้าวห้าวยัดปาก','สากกระเบือยัดก้น','คนไททิ้งแผ่นดิน',
         'ไพร่เพื่อทัก','บักหำน้อย','กบฏต่อราชบัลลังก์','ลานจอดนกเอี้ยง']
         prefixinsult = ['ไอ้','อี','อิ','ไอ']
-        print(random.choice(prefixinsult)+""+random.choice(reinsult2)+"ค่ะ\n\nพุดสุภาพๆไม่ได้หรอคะ ?\n[Your Activity reported to master admin]")
+        print(random.choice(prefixinsult)+""+random.choice(reinsult2)+"ค่ะ\n\nพุดสุภาพๆไม่ได้หรอคะ ?\n\n[Your Activity reported to master admin]")
         line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
         line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(sys.argv[2]))
         line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage("Submit weird words to you sir"))
@@ -107,9 +122,44 @@ if '!aboutbot' in message:
     print("Bot: Helecho Secretario\nPurpose: Freshy Registration System")
     print("Create By: Promsurin Phutthammawong TU82 \nElectric/Computer Engineering #15\nSOS: 0625461939")
     exit()
-if  "quiet" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
-    print("I'm Sorry sir :(")
-    exit()
+    
+if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
+    try:
+        message = message.replace('!ban','')
+        newquery = "INSERT INTO `BanUserId` (`userId`) VALUE (\"" + str(message) + "\")"
+        cur.execute(newquery)
+        db.commit()
+        db.close()
+        line_bot_api.push_message(message, TextSendMessage("คุณถูกแบนโดย Master Administrator\nติดต่อการปลดแบน: 0625461939 หรือพิมพ์ !sos"))
+        print("Banned ID: "+message+" Successfully")
+        exit()
+    except Exception as E:
+        print(E)
+        db.rollback()
+        db.close()
+        exit()
+if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
+    try:
+        message = message.replace('!unban','')
+        newquery = "SELECT id FROM `BanUserId` WHERE userId= (\"" + str(message) + "\")"
+        cur.execute(newquery)
+        results = cur.fetchone()
+        if results != None:
+            query = "DELETE FROM `BanUserId` WHERE `userId` =\""+ str(message) +"\""
+            cur.execute(query)
+            db.commit()
+            db.close()
+            print("ท่านได้ทำการยกเลิกการแบนสตาฟไลน์นี้เรียบร้อยค่ะ")
+            line_bot_api.push_message(message, TextSendMessage("คุณได้ถูกทำการปลดแบนจาก Master Administrator เรียบร้อยค่ะ แจ้งปัญหาโทร: 0625461939 หรือ !sos"))
+        db.commit()
+        db.close()
+        print("Unbanned ID: "+message+" Successfully")
+        exit()
+    except Exception as E:
+        print(E)
+        db.rollback()
+        db.close()
+        exit()
 if  message == "!reg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"register\""
     cur.execute(query)
@@ -130,13 +180,9 @@ if  message == "!roundrobin":
     import socket
     print ("[Server: "+socket.gethostname()+" ]")
     exit()
-if  "!sos" in message:
-    line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
-    #message = message.replace("!sos","[SOS]")
-    #line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(message))
-    print ("*Master Administrator\nContact: http://line.me/ti/p/~promsurin\nTelephone:0625461939")
+
+
     
-    exit()
 if  message == "!nreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"nregister\""
     cur.execute(query)
