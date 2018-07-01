@@ -79,6 +79,7 @@ if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
             db.commit()
             db.close()
             print("ท่านได้ทำการยกเลิกการแบนสตาฟไลน์นี้เรียบร้อยค่ะ")
+            line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
             line_bot_api.push_message(message, TextSendMessage("คุณได้ถูกทำการปลดแบนจาก Master Administrator เรียบร้อยค่ะ แจ้งปัญหาโทร: 0625461939 หรือ !sos"))
         db.commit()
         db.close()
@@ -88,7 +89,13 @@ if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
         print(E)
         db.rollback()
         db.close()
-        exit()    
+        exit()
+
+if '!aboutbot' in message:
+    print("Bot: Helecho Secretario\nPurpose: Freshy Registration System")
+    print("Create By: Promsurin Phutthammawong TU82 \nElectric/Computer Engineering #15\nSOS: 0625461939")
+    exit()
+    
 query = "SELECT COUNT(`id`) FROM `BanUserId` WHERE userId =\""+ str(sys.argv[2])+"\""
 cur.execute(query)
 results = cur.fetchone()[0]
@@ -97,54 +104,7 @@ if results != 0:
     exit()
 
 now = datetime.now()
-night = ['Goodnight','goodnight','ราตรีสวัสดิ์ค่ะ','กู้ดไนท์ค่ะ','ฝันดีค่ะ','อย่าลืมห่มผ้านะคะ','ราตรีสวัสดิ์ค่ะ','อากาศเปลี่ยนแปลงบ่อยดูแลสุขภาพนะคะ','ฝันดี','ไปนอน']
-listinsult = ['ตาย','บ้า','ห่วย','เกรียน','เหี้ย','สัส','ฟัคยู','ฟัค','หยิ่ง','แย่','useless', 'use less','fuck','suck','dick','shit','bitch','ควย','kuy','noob','นูบ','หรี่','กาก','เวร','สถุน']
-for tmp in listinsult:
-    if tmp in message:
-        reinsult2 = ['ผี','ผี','ดอก','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','แหวกกอหญ้า','บ้าห้าร้อยจำพวก','ปลวกใต้หลังคา','หน้าปลาจวด',
-        'บ้องกัญชา','ปลาไม่กินเบ็ด','เห็ดสามสี','อิเห็ดต้มยำ','อิเห็ดต้มยำ',
-        'กะโหลกซออู้','กู่ไม่กลับ','ตับย่างเกลือ',
-        'เชื้ออหิวาต์','ม้าขี้ครอก','หอกขึ้นสนิม','ขิมสายขาด',
-        'ชาติสุนัข','ตะหวักตะบวย','กล้วยตากแห้ง','แกงฟักทอง',
-        'คลองเจ็ดคด','ชะมดเช็ด','เกล็ดเต็มตัว','มั่วไม่รู้จบ',
-        'ศพขึ้นอืด','หืดขึ้นคอ','ปลาหมอแถกเหงือก','เผือกรมควัน',
-        'มันสำปะหลัง','โกดังเก็บศพ','กบผัดเผ็ด','เป็ดทอดกระเทียม',
-        'ดีไม่ห่างเหิน','เดินไม่ดูทาง','ก้างติดคอ','หม้อก้นทะลุ',
-        'หัว***','กระจาดปลาแห้ง',
-        'ปลาทูแม่กลอง','สององคต','หดหัวในกระฎอง','สมองเท่าเมล็ดถั่ว',
-        'ตัวกินไก่','ใจปลาซิว','หิวตลอดศก','ซกมกเป็นนิจสิน',
-        'หินใต้บาดาล','เพลงผิดคีย์','สีทาบ้าน',
-        'จานเปื้อนคราบ','แมลงสาบทรงเครื่อง','เปลืองข้าวสุก','กระปุกตังไฉ่',
-        'มารสังคม','ผ้าห่มสีซีด','ศพไม่ฉีดฟอร์มาลิน','กระถินริมรั้ว',
-        'บัวเต่าถุย','กุ๊ยไร้สังกัด','ผัดผักไฟแดง','แพนงกระดูกหมู',
-        'สาคูน้ำกะทิ','กะปิค้างคืน','หื่นเป็น...','ขวานผ่าซาก',
-        'กากสิ่งปฏิกูล','พะยูนตากแดด','แรดสองนอ','จอหนังตะลุง',
-        'ถุงสองใบ','ไข่ลูกเดียว','เคียวห่วยๆ','ถ้วยสังขยาบูด',
-        'กระต่ายขูดมะพร้าว','ชาวสวนทุเรียน','ตะเพียนหางยาว','ว่าวหางขาด',
-        'ฉลาดแต่เรื่องโง่','โมฆบุรุษ','มนุษย์สามานย์','เชี่ยวชาญแต่เรื่องชั่ว',
-        'แกงคั่วหอยขม','นิยมแต่เรื่องผิด','จิตวิปลาส','ทาสเงินตรา',
-        'ชฎายอดหัก','ไม้หลักปักขี้เลน','จิ้งเหลนหางไหม้','ตะไคร่ในท่อน้ำ',
-        'ดำตับเป็ด','พูดเท็จหน้าด้านๆ','คอห่านส้วมซึม','อึมครึมตลอดชาติ',
-        'หาดจอมเทียน','เชี่ยนตะบันหมาก','ปากปลากะโห้','โถส้วมสาธารณะ',
-        'กระบะใส่ขี้แมว','เรือแจวยี่สิบฝีพาย','ควายเขาหัก','ปลักโคลนเลน',
-        'ตาเถรตกใต้ถุน','เนรคุณแผ่นดินเกิด','ระเบิดแสวงเครื่อง','ครกกระเดื่องตำข้าว',
-        'มะพร้าวห้าวยัดปาก','สากกระเบือยัดก้น','คนไททิ้งแผ่นดิน',
-        'ไพร่เพื่อทัก','บักหำน้อย','กบฏต่อราชบัลลังก์','ลานจอดนกเอี้ยง']
-        prefixinsult = ['ไอ้','อี','อิ','ไอ']
-        print(random.choice(prefixinsult)+""+random.choice(reinsult2)+"ค่ะ\n\nพุดสุภาพๆไม่ได้หรอคะ ?\n\n[Your Activity reported to master admin]")
-        line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
-        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(sys.argv[2]))
-        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage("Submit weird words to you sir: "))
-        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(message))
-        exit()
-for tmp in night:
-    if tmp in message:
-        print(random.choice(night))
-        exit()
-if '!aboutbot' in message:
-    print("Bot: Helecho Secretario\nPurpose: Freshy Registration System")
-    print("Create By: Promsurin Phutthammawong TU82 \nElectric/Computer Engineering #15\nSOS: 0625461939")
-    exit()
+
     
 if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     try:
@@ -228,6 +188,58 @@ resultcheck = cur.fetchone()
 if resultcheck[0] != 0:
     master = 2
 
+
+night = ['Goodnight','goodnight','ราตรีสวัสดิ์ค่ะ','กู้ดไนท์ค่ะ','ฝันดีค่ะ','อย่าลืมห่มผ้านะคะ','ราตรีสวัสดิ์ค่ะ','อากาศเปลี่ยนแปลงบ่อยดูแลสุขภาพนะคะ','ฝันดี','ไปนอน']
+listinsult = ['ตาย','บ้า','ห่วย','เกรียน','เหี้ย','สัส','ฟัคยู','ฟัค','หยิ่ง','แย่','useless', 'use less','fuck','suck','dick','shit','bitch','ควย','kuy','noob','นูบ','หรี่','กาก','เวร','สถุน']
+for tmp in listinsult:
+    if tmp in message:
+        reinsult2 = ['ผี','ผี','ดอก','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','แหวกกอหญ้า','บ้าห้าร้อยจำพวก','ปลวกใต้หลังคา','หน้าปลาจวด',
+        'บ้องกัญชา','ปลาไม่กินเบ็ด','เห็ดสามสี','อิเห็ดต้มยำ','อิเห็ดต้มยำ',
+        'กะโหลกซออู้','กู่ไม่กลับ','ตับย่างเกลือ',
+        'เชื้ออหิวาต์','ม้าขี้ครอก','หอกขึ้นสนิม','ขิมสายขาด',
+        'ชาติสุนัข','ตะหวักตะบวย','กล้วยตากแห้ง','แกงฟักทอง',
+        'คลองเจ็ดคด','ชะมดเช็ด','เกล็ดเต็มตัว','มั่วไม่รู้จบ',
+        'ศพขึ้นอืด','หืดขึ้นคอ','ปลาหมอแถกเหงือก','เผือกรมควัน',
+        'มันสำปะหลัง','โกดังเก็บศพ','กบผัดเผ็ด','เป็ดทอดกระเทียม',
+        'ดีไม่ห่างเหิน','เดินไม่ดูทาง','ก้างติดคอ','หม้อก้นทะลุ',
+        'หัว***','กระจาดปลาแห้ง',
+        'ปลาทูแม่กลอง','สององคต','หดหัวในกระฎอง','สมองเท่าเมล็ดถั่ว',
+        'ตัวกินไก่','ใจปลาซิว','หิวตลอดศก','ซกมกเป็นนิจสิน',
+        'หินใต้บาดาล','เพลงผิดคีย์','สีทาบ้าน',
+        'จานเปื้อนคราบ','แมลงสาบทรงเครื่อง','เปลืองข้าวสุก','กระปุกตังไฉ่',
+        'มารสังคม','ผ้าห่มสีซีด','ศพไม่ฉีดฟอร์มาลิน','กระถินริมรั้ว',
+        'บัวเต่าถุย','กุ๊ยไร้สังกัด','ผัดผักไฟแดง','แพนงกระดูกหมู',
+        'สาคูน้ำกะทิ','กะปิค้างคืน','หื่นเป็น...','ขวานผ่าซาก',
+        'กากสิ่งปฏิกูล','พะยูนตากแดด','แรดสองนอ','จอหนังตะลุง',
+        'ถุงสองใบ','ไข่ลูกเดียว','เคียวห่วยๆ','ถ้วยสังขยาบูด',
+        'กระต่ายขูดมะพร้าว','ชาวสวนทุเรียน','ตะเพียนหางยาว','ว่าวหางขาด',
+        'ฉลาดแต่เรื่องโง่','โมฆบุรุษ','มนุษย์สามานย์','เชี่ยวชาญแต่เรื่องชั่ว',
+        'แกงคั่วหอยขม','นิยมแต่เรื่องผิด','จิตวิปลาส','ทาสเงินตรา',
+        'ชฎายอดหัก','ไม้หลักปักขี้เลน','จิ้งเหลนหางไหม้','ตะไคร่ในท่อน้ำ',
+        'ดำตับเป็ด','พูดเท็จหน้าด้านๆ','คอห่านส้วมซึม','อึมครึมตลอดชาติ',
+        'หาดจอมเทียน','เชี่ยนตะบันหมาก','ปากปลากะโห้','โถส้วมสาธารณะ',
+        'กระบะใส่ขี้แมว','เรือแจวยี่สิบฝีพาย','ควายเขาหัก','ปลักโคลนเลน',
+        'ตาเถรตกใต้ถุน','เนรคุณแผ่นดินเกิด','ระเบิดแสวงเครื่อง','ครกกระเดื่องตำข้าว',
+        'มะพร้าวห้าวยัดปาก','สากกระเบือยัดก้น','คนไททิ้งแผ่นดิน',
+        'ไพร่เพื่อทัก','บักหำน้อย','กบฏต่อราชบัลลังก์','ลานจอดนกเอี้ยง']
+        prefixinsult = ['ไอ้','อี','อิ','ไอ']
+        print(random.choice(prefixinsult)+""+random.choice(reinsult2)+"ค่ะ\n\nพุดสุภาพๆไม่ได้หรอคะ ?\n\n[Your Activity reported to master admin]")
+        line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
+        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(sys.argv[2]))
+        level = "User ระดับทั่วไป"
+        if master == 1:
+            level = "Administrator ระดับธรรมดา"
+        elif master == 2:
+            level = "Administrator ระดับทะเบียน"
+        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(level))
+        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage("Submit weird words to you sir: "))
+        line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(message))
+        exit()
+for tmp in night:
+    if tmp in message:
+        print(random.choice(night))
+        exit()
+        
 '''if master ==  0 :
     error = ["Hey Hey! you don't have this permission bitch",
              "What The Fuck, you don't have permission here GTFO",
