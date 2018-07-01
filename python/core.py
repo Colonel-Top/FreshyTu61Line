@@ -120,15 +120,16 @@ if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
             exit()
         newquery = "INSERT INTO `BanUserId` (`userId`) VALUE (\"" + str(message) + "\")"
         cur.execute(newquery)
-        db.commit()
-        db.close()
+        
         line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
         stringsend = "คุณถูกแบนโดย Master Administrator\nติดต่อการปลดแบน: 0625461939 หรือพิมพ์ !sos,!aboutbot"
         line_bot_api.push_message(message, TextSendMessage(stringsend))
+        db.commit()
+        db.close()
         print("Banned ID: \n"+message+"\nSuccessfully")
         exit()
     except Exception as E:
-        print(E)
+        print("WRONG BAN")
         db.rollback()
         db.close()
         exit()
