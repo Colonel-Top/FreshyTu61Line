@@ -67,12 +67,34 @@ if  "!sos" in message:
     
     exit()
 
-    
+if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
+    try:
+        message = message.replace('!unban','')
+        newquery = "SELECT id FROM `BanUserId` WHERE userId= (\"" + str(message) + "\")"
+        cur.execute(newquery)
+        results = cur.fetchone()
+        if results != None:
+            query = "DELETE FROM `BanUserId` WHERE `userId` =\""+ str(message) +"\""
+            cur.execute(query)
+            db.commit()
+            db.close()
+            print("ท่านได้ทำการยกเลิกการแบนสตาฟไลน์นี้เรียบร้อยค่ะ")
+            line_bot_api.push_message(message, TextSendMessage("คุณได้ถูกทำการปลดแบนจาก Master Administrator เรียบร้อยค่ะ แจ้งปัญหาโทร: 0625461939 หรือ !sos"))
+        db.commit()
+        db.close()
+        print("Unbanned ID: "+message+" Successfully")
+        exit()
+    except Exception as E:
+        print(E)
+        db.rollback()
+        db.close()
+        exit()    
 query = "SELECT COUNT(`id`) FROM `BanUserId` WHERE userId =\""+ str(sys.argv[2])+"\""
 cur.execute(query)
 results = cur.fetchone()[0]
 if results != 0:
     print('คุณถูกแบนโดย Master Administrator\nติดต่อขอปลดแบน:0625461939 หรือ !sos')
+    exit()
 
 now = datetime.now()
 night = ['Goodnight','goodnight','ราตรีสวัสดิ์ค่ะ','กู้ดไนท์ค่ะ','ฝันดีค่ะ','อย่าลืมห่มผ้านะคะ','ราตรีสวัสดิ์ค่ะ','อากาศเปลี่ยนแปลงบ่อยดูแลสุขภาพนะคะ','ฝันดี','ไปนอน']
@@ -133,35 +155,14 @@ if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
         db.close()
         line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
         line_bot_api.push_message(message, TextSendMessage("คุณถูกแบนโดย Master Administrator\nติดต่อการปลดแบน: 0625461939 หรือพิมพ์ !sos"))
-        print("Banned ID: "+message+" Successfully")
+        print("Banned ID: \n"+message+"\nSuccessfully")
         exit()
     except Exception as E:
         print(E)
         db.rollback()
         db.close()
         exit()
-if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
-    try:
-        message = message.replace('!unban','')
-        newquery = "SELECT id FROM `BanUserId` WHERE userId= (\"" + str(message) + "\")"
-        cur.execute(newquery)
-        results = cur.fetchone()
-        if results != None:
-            query = "DELETE FROM `BanUserId` WHERE `userId` =\""+ str(message) +"\""
-            cur.execute(query)
-            db.commit()
-            db.close()
-            print("ท่านได้ทำการยกเลิกการแบนสตาฟไลน์นี้เรียบร้อยค่ะ")
-            line_bot_api.push_message(message, TextSendMessage("คุณได้ถูกทำการปลดแบนจาก Master Administrator เรียบร้อยค่ะ แจ้งปัญหาโทร: 0625461939 หรือ !sos"))
-        db.commit()
-        db.close()
-        print("Unbanned ID: "+message+" Successfully")
-        exit()
-    except Exception as E:
-        print(E)
-        db.rollback()
-        db.close()
-        exit()
+
 if  message == "!reg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"register\""
     cur.execute(query)
