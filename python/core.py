@@ -129,7 +129,7 @@ if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
         print("Banned ID: \n"+message+"\nSuccessfully")
         exit()
     except Exception as E:
-        print("WRONG BAN")
+        print("ไอดีผู้ใช้ผิดค่ะไม่สามารถแบนได้ค่ะ")
         db.rollback()
         db.close()
         exit()
