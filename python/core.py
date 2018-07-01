@@ -336,9 +336,9 @@ if '!info' == message:
     if master == 1:
         print("[Server Status Report]\n\nยอด Staff ทั่วไป: "+str(normalstaff) + " คน\nยอดคนเข้างานปัจจุบัน: "+str(ticket)+" คน\nยอดน้องลงทะเบียนในระบบ: "+str(users)+" คน")
     if master == 2:
-        cur.execute(" SELECT COUNT(freshies.id) FROM freshies JOIN tickets ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"ชาย\"")
+        cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE `freshies.gender`=\"ชาย\"")
         boardmale = cur.fetchone()[0]
-        cur.execute(" SELECT COUNT(freshies.id) FROM freshies JOIN tickets ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"หญิง\"")
+        cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE `freshies.gender`=\"หญิง\"")
         boardfemale = cur.fetchone()[0]
         print("\nยอด Staff ลงทะเบียนหน้างาน: "+str(masterstaff) +" คน\nยอดน้องลงทะเบียนเพศชาย : "+str(maleusers) + " คน\nยอดน้องลงทะเบียนเพศหญิง : "+ str(femaleusers)+ " คน\n")
         print("ยอดน้องเข้างานเพศชาย : "+str(boardmale) + " คน\nยอดน้องเข้างานเพศหญิง : "+ str(boardfemale)  + " คน\n")
