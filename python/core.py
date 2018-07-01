@@ -327,9 +327,9 @@ if '!info' == message:
     cur.execute("SELECT COUNT(id) FROM `LineUserId`")
     masterstaff = cur.fetchone()[0]
     
-    cur.execute("SELECT COUNT(id) FROM `users` WHERE `gender`=\"ชาย\"")
+    cur.execute("SELECT COUNT(id) FROM `freshies` WHERE `gender`=\"ชาย\"")
     maleusers = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(id) FROM `users` WHERE `gender`=\"หญิง\"")
+    cur.execute("SELECT COUNT(id) FROM `freshies` WHERE `gender`=\"หญิง\"")
     femaleusers = cur.fetchone()[0]
     cur.execute("SELECT COUNT(id) FROM `BanUserId`")
     banstaff = cur.fetchone()[0]
