@@ -61,8 +61,8 @@ cur = db.cursor()
 
 now = datetime.now()
 night = ['Goodnight','goodnight','ราตรีสวัสดิ์ค่ะ','กู้ดไนท์ค่ะ','ฝันดีค่ะ','อย่าลืมห่มผ้านะคะ','ราตรีสวัสดิ์ค่ะ','อากาศเปลี่ยนแปลงบ่อยดูแลสุขภาพนะคะ','ฝันดี','ไปนอน']
-listinsult = ['ตาย','บ้า','ห่วย','เกรียน','เหี้ย','สัส','ฟัคยู','ฟัค','หยิ่ง','แย่','useless', 'use less','fuck','suck','dick','shit','bitch','ควย','kuy','noob','นูบ','หรี่','กาก','เวร','สถุน']
-for tmp in listinsult:
+listinsult = ['ตาย','บ้า','ห่วย','เกรียน','เหี้ย','สัส','ฟัคยู','ฟัค','หยิ่ง','แย่','useless', 'use less','fuck','suck','dick','shit','bitch','ควย','kuy','noob','นูบ','หรี่','กาก','เวร','สถุน','ฟวย','ควย',]
+'''for tmp in listinsult:
     if tmp in message:
         reinsult2 = ['ผี','ผี','ดอก','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','แหวกกอหญ้า','บ้าห้าร้อยจำพวก','ปลวกใต้หลังคา','หน้าปลาจวด',
         'บ้องกัญชา','ปลาไม่กินเบ็ด','เห็ดสามสี','อิเห็ดต้มยำ','อิเห็ดต้มยำ',
@@ -95,7 +95,7 @@ for tmp in listinsult:
         'ไพร่เพื่อทัก','บักหำน้อย','กบฏต่อราชบัลลังก์','ลานจอดนกเอี้ยง']
         prefixinsult = ['ไอ้','อี','อิ','ไอ']
         print(random.choice(prefixinsult)+""+random.choice(reinsult2)+"ค่ะ\n\nพุดสุภาพๆไม่ได้หรอคะ ?\n[Your Activity will be report")
-        exit()
+        exit()'''
 for tmp in night:
     if tmp in message:
         print(random.choice(night))
