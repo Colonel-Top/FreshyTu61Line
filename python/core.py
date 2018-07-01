@@ -131,6 +131,7 @@ if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
         cur.execute(newquery)
         db.commit()
         db.close()
+        line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
         line_bot_api.push_message(message, TextSendMessage("คุณถูกแบนโดย Master Administrator\nติดต่อการปลดแบน: 0625461939 หรือพิมพ์ !sos"))
         print("Banned ID: "+message+" Successfully")
         exit()
