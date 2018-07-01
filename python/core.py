@@ -105,6 +105,11 @@ results = cur.fetchone()[0]
 if results != 0:
     print('คุณถูกแบนโดย Master Administrator\nติดต่อขอปลดแบน:0625461939 หรือ !sos')
     exit()
+if '!help' == message:
+    if master == 1: #normal admin
+        print("[HELP]/[ช่วยเหลือคำสั่ง]\n\nคำสั่ง\nพิมพ์ CODE (4 - 5 ตำแหน่ง) จะขึ้นข้อมูลทันที\n!sos : สำหรับแสดงข้อมูลการติดต่อเหตุจำเป็น/ด่วน/ติดต่อผู้พัฒนา\n!aboutbot : แสดงข้อมูลเกี่ยวกับบอท")
+    elif master == 2: #master
+        print("[HELP]/[ช่วยเหลือคำสั่ง]\n\nคำสั่ง\nพิมพ์ CODE (4 - 5 ตำแหน่ง) จะขึ้นข้อมูลทันที\nsxxxx : ทำการลงทะเบียน Freshy ด้วย code xxxx\nคำสั่งย่อย yes : ยืนยันการลงทะเบียนโค้ดนี้\nคำสั่งย่อย no : ยกเลิกการยืนยันการลงทะเบียนโค้ดนี้\n!regann : ทำการประกาศไปยังสตาฟฝ่ายทะเบียนที่เป็น Master ทุกคน\n!ann : ประกาศไปยังสตาฟทุกคนที่อยู่ในระบบไลน์\n!status : แสดงสถานะการค้างโค้ดของคุณ\n!sos : สำหรับแสดงข้อมูลการติดต่อเหตุจำเป็น/ด่วน/ติดต่อผู้พัฒนา\n!aboutbot : แสดงข้อมูลเกี่ยวกับบอท")
 
 now = datetime.now()
 
@@ -257,11 +262,6 @@ def checknormaladmin():
     if master == 0:
         printerror()
 
-if '!help' == message:
-    if master == 1: #normal admin
-        print("[HELP]/[ช่วยเหลือคำสั่ง]\n\nคำสั่ง\nพิมพ์ CODE (4 - 5 ตำแหน่ง) จะขึ้นข้อมูลทันที\n!sos : สำหรับแสดงข้อมูลการติดต่อเหตุจำเป็น/ด่วน/ติดต่อผู้พัฒนา\n!aboutbot : แสดงข้อมูลเกี่ยวกับบอท")
-    elif master == 2: #master
-        print("[HELP]/[ช่วยเหลือคำสั่ง]\n\nคำสั่ง\nพิมพ์ CODE (4 - 5 ตำแหน่ง) จะขึ้นข้อมูลทันที\nsxxxx : ทำการลงทะเบียน Freshy ด้วย code xxxx\nคำสั่งย่อย yes : ยืนยันการลงทะเบียนโค้ดนี้\nคำสั่งย่อย no : ยกเลิกการยืนยันการลงทะเบียนโค้ดนี้\n!regann : ทำการประกาศไปยังสตาฟฝ่ายทะเบียนที่เป็น Master ทุกคน\n!ann : ประกาศไปยังสตาฟทุกคนที่อยู่ในระบบไลน์\n!status : แสดงสถานะการค้างโค้ดของคุณ\n!sos : สำหรับแสดงข้อมูลการติดต่อเหตุจำเป็น/ด่วน/ติดต่อผู้พัฒนา\n!aboutbot : แสดงข้อมูลเกี่ยวกับบอท")
 if '!regann' in message:
     checkmasteradmin()
     line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
