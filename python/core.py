@@ -96,7 +96,35 @@ if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
         db.rollback()
         db.close()
         exit()
-
+if  "!unbanid" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
+    try:
+        message = message.replace('!unbanid','')
+        if len(message) == 0:
+            print("Empty User ID นะคะ")
+            exit()
+        newquery = "SELECT id,userId FROM `BanUserId` WHERE id= (\"" + str(message) + "\")"
+        cur.execute(newquery)
+        results = cur.fetchone()
+        if results != None:
+            #print(results)
+            query = "DELETE FROM `BanUserId` WHERE `id` =\""+ str(message) +"\""
+            cur.execute(query)
+            db.commit()
+            db.close()
+            print("ท่านได้ทำการยกเลิกการแบนสตาฟไลน์นี้เรียบร้อยค่ะ")
+            line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
+            line_bot_api.push_message(results[1], TextSendMessage("คุณได้ถูกทำการปลดแบนจาก Master Administrator เรียบร้อยค่ะ แจ้งปัญหาโทร: 0625461939 หรือ !sos"))
+            print("Unbanned ID: "+message+" Successfully (USER: "+str(results[1]) + ")")
+            exit()
+        else:
+            print("ไม่พบ User ดังกล่าวในระบบแบนค่ะ")
+            exit()
+        
+    except Exception as E:
+        print(E)
+        db.rollback()
+        db.close()
+        exit()
 if '!aboutbot' in message:
     print("Bot: Helecho Secretario\nPurpose: Freshy Registration System")
     print("Create By: Promsurin Phutthammawong TU82 \nElectric/Computer Engineering #15\nSOS: 0625461939")
@@ -120,9 +148,9 @@ if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
             exit()
         newquery = "INSERT INTO `BanUserId` (`userId`) VALUE (\"" + str(message) + "\")"
         cur.execute(newquery)
-        
+        lastId=cur.lastrowid
         line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
-        stringsend = "คุณถูกแบนโดย Master Administrator\nติดต่อการปลดแบน: 0625461939 หรือพิมพ์ !sos,!aboutbot"
+        stringsend = "คุณถูกแบนโดย Master Administrator: BANID:["+str(lastId)+"]\nติดต่อการปลดแบน: 0625461939 หรือพิมพ์ !sos,!aboutbot"
         line_bot_api.push_message(message, TextSendMessage(stringsend))
         db.commit()
         db.close()
