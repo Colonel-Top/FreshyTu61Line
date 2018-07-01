@@ -256,7 +256,7 @@ def checkmasteradmin():
 def checknormaladmin():
     if master == 0:
         printerror()
-if '!regpost' in message:
+if '!regann' in message:
     checkmasteradmin()
     line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
     message = message.replace('!regpost','ประกาศสตาฟฝ่ายทะเบียน: ')
