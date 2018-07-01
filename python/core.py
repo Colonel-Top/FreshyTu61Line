@@ -336,9 +336,9 @@ if '!info' == message:
     if master == 1:
         print("[Server Status Report]\n\nยอด Staff ทั่วไป: "+str(normalstaff) + " คน\nยอดคนเข้างานปัจจุบัน: "+str(ticket)+" คน\nยอดน้องลงทะเบียนในระบบ: "+str(users)+" คน")
     if master == 2:
-        cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE `freshies.gender`=\"ชาย\"")
+        cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"ชาย\"")
         boardmale = cur.fetchone()[0]
-        cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE `freshies.gender`=\"หญิง\"")
+        cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"หญิง\"")
         boardfemale = cur.fetchone()[0]
         print("\nยอด Staff ลงทะเบียนหน้างาน: "+str(masterstaff) +" คน\nยอดน้องลงทะเบียนเพศชาย : "+str(maleusers) + " คน\nยอดน้องลงทะเบียนเพศหญิง : "+ str(femaleusers)+ " คน\n")
         print("ยอดน้องเข้างานเพศชาย : "+str(boardmale) + " คน\nยอดน้องเข้างานเพศหญิง : "+ str(boardfemale)  + " คน\n")
@@ -420,11 +420,11 @@ if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in 
         cur.execute(query)
         seatres = cur.fetchone()
         #print(results[1])
-        stringout= 'Code: [ ' + message+' ]\nName: '+str(results[1]) +'\nSurname: '+str(results[2]) +'\nNickname: '+str(results[3]) +'\nSeatID: '
+        stringout= 'Code: [ ' + message+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) +'\nSeatID: '
         if seatres != None:
             print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4]))
         else:
-             print (stringout+' None'+'\nอาหารที่แพ้: '+str(results[4]))
+             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน/ไม่มีที่นั่ง'+'\nอาหารที่แพ้: '+str(results[4]))
     db.commit()
     db.close()
     exit()
@@ -471,7 +471,7 @@ if len(message) >= 5 and 'c' in message and len(message) <= 7:
         db.close()
     except Exception as e:
         print(e)
-        print("Error for deleting please try again\n(Due Internet Problem or There's no this code available in ticket)")
+        print("Error for deleting please try again\n(Contact Master Admin  : 0625461939 / !sos)")
         db.rollback()
         db.close()
         exit()
