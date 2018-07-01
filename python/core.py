@@ -95,7 +95,7 @@ for tmp in listinsult:
         'ไพร่เพื่อทัก','บักหำน้อย','กบฏต่อราชบัลลังก์','ลานจอดนกเอี้ยง']
         prefixinsult = ['ไอ้','อี','อิ','ไอ']
         print(random.choice(prefixinsult)+""+random.choice(reinsult2)+"ค่ะ\n\nพุดสุภาพๆไม่ได้หรอคะ ?\n[Your Activity reported to master admin]")
-    
+        line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
         line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage(sys.argv[2]))
         line_bot_api.push_message("Ufb00beda08083bcf402fbd2160b75574", TextSendMessage("Submit weird words to you sir"))
         exit()
