@@ -73,7 +73,7 @@ if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
         newquery = "SELECT id FROM `BanUserId` WHERE userId= (\"" + str(message) + "\")"
         cur.execute(newquery)
         results = cur.fetchone()
-        if results[0] != 0:
+        if results != None:
             #print(results)
             query = "DELETE FROM `BanUserId` WHERE `userId` =\""+ str(message) +"\""
             cur.execute(query)
