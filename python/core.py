@@ -70,6 +70,9 @@ if  "!sos" in message:
 if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     try:
         message = message.replace('!unban','')
+        if len(message) == 0:
+            print("Empty User ID นะคะ")
+            exit()
         newquery = "SELECT id FROM `BanUserId` WHERE userId= (\"" + str(message) + "\")"
         cur.execute(newquery)
         results = cur.fetchone()
@@ -112,6 +115,9 @@ now = datetime.now()
 if  "!ban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     try:
         message = message.replace('!ban','')
+        if len(message) == 0:
+            print("Empty User ID นะคะ")
+            exit()
         newquery = "INSERT INTO `BanUserId` (`userId`) VALUE (\"" + str(message) + "\")"
         cur.execute(newquery)
         db.commit()
