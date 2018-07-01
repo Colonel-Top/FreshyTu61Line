@@ -340,7 +340,7 @@ if 'info' == message:
         boardmale = cur.fetchone()[0]
         cur.execute(" SELECT COUNT(freshies.id) FROM freshies JOIN tickets ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"หญิง\"")
         boardfemale = cur.fetchone()[0]
-        print("\nยอด Staff ลงทะเบียนหน้างาน: "+str(masterstaff) " คน\nยอดน้องลงทะเบียนเพศชาย : "+str(maleusers) + " คน\nยอดน้องลงทะเบียนเพศหญิง : "+ str(femaleusers)+ " คน\n")
+        print("\nยอด Staff ลงทะเบียนหน้างาน: "+str(masterstaff) +" คน\nยอดน้องลงทะเบียนเพศชาย : "+str(maleusers) + " คน\nยอดน้องลงทะเบียนเพศหญิง : "+ str(femaleusers)+ " คน\n")
         print("ยอดน้องเข้างานเพศชาย : "+str(boardmale) + " คน\nยอดน้องเข้างานเพศหญิง : "+ str(boardfemale)  + " คน\n")
 if '!ann' in message:
     checkmasteradmin()
