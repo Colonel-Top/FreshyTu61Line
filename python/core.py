@@ -257,7 +257,7 @@ def checknormaladmin():
     if master == 0:
         printerror()
 
-if '!help' == message and master >= 1 and master <=2:
+if '!help' == message:
     if master == 1: #normal admin
         print("[HELP]/[ช่วยเหลือคำสั่ง]\n\nคำสั่ง\nพิมพ์ CODE (4 - 5 ตำแหน่ง) จะขึ้นข้อมูลทันที\n!sos : สำหรับแสดงข้อมูลการติดต่อเหตุจำเป็น/ด่วน/ติดต่อผู้พัฒนา\n!aboutbot : แสดงข้อมูลเกี่ยวกับบอท")
     elif master == 2: #master
