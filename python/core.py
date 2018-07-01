@@ -66,36 +66,6 @@ if  "!sos" in message:
     print ("*Master Administrator\nContact: http://line.me/ti/p/~promsurin\nTelephone:0625461939")
     
     exit()
-
-if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
-    try:
-        message = message.replace('!unban','')
-        if len(message) == 0:
-            print("Empty User ID นะคะ")
-            exit()
-        newquery = "SELECT id FROM `BanUserId` WHERE userId= (\"" + str(message) + "\")"
-        cur.execute(newquery)
-        results = cur.fetchone()
-        if results != None:
-            #print(results)
-            query = "DELETE FROM `BanUserId` WHERE `userId` =\""+ str(message) +"\""
-            cur.execute(query)
-            db.commit()
-            db.close()
-            print("ท่านได้ทำการยกเลิกการแบนสตาฟไลน์นี้เรียบร้อยค่ะ")
-            line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
-            line_bot_api.push_message(message, TextSendMessage("คุณได้ถูกทำการปลดแบนจาก Master Administrator เรียบร้อยค่ะ แจ้งปัญหาโทร: 0625461939 หรือ !sos"))
-            print("Unbanned ID: "+message+" Successfully")
-            exit()
-        else:
-            print("ไม่พบ User ดังกล่าวในระบบแบนค่ะ")
-            exit()
-        
-    except Exception as E:
-        print(E)
-        db.rollback()
-        db.close()
-        exit()
 if  "!unbanid" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     try:
         message = message.replace('!unbanid','')
@@ -125,6 +95,36 @@ if  "!unbanid" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574"
         db.rollback()
         db.close()
         exit()
+if  "!unban" in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
+    try:
+        message = message.replace('!unban','')
+        if len(message) == 0:
+            print("Empty User ID นะคะ")
+            exit()
+        newquery = "SELECT id FROM `BanUserId` WHERE userId= (\"" + str(message) + "\")"
+        cur.execute(newquery)
+        results = cur.fetchone()
+        if results != None:
+            #print(results)
+            query = "DELETE FROM `BanUserId` WHERE `userId` =\""+ str(message) +"\""
+            cur.execute(query)
+            db.commit()
+            db.close()
+            print("ท่านได้ทำการยกเลิกการแบนสตาฟไลน์นี้เรียบร้อยค่ะ")
+            line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
+            line_bot_api.push_message(message, TextSendMessage("คุณได้ถูกทำการปลดแบนจาก Master Administrator เรียบร้อยค่ะ แจ้งปัญหาโทร: 0625461939 หรือ !sos"))
+            print("Unbanned ID: "+message+" Successfully")
+            exit()
+        else:
+            print("ไม่พบ User ดังกล่าวในระบบแบนค่ะ")
+            exit()
+        
+    except Exception as E:
+        print(E)
+        db.rollback()
+        db.close()
+        exit()
+
 if '!aboutbot' in message:
     print("Bot: Helecho Secretario\nPurpose: Freshy Registration System")
     print("Create By: Promsurin Phutthammawong TU82 \nElectric/Computer Engineering #15\nSOS: 0625461939")
