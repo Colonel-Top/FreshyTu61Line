@@ -322,7 +322,7 @@ if master == 2 and "!status" == message:
     results = cur.fetchone()[0]
     if results != 0 and len(message)<=5 and len(message)>=1:
         print("[!]คุณได้ค้างการ Confirm ลงทะเบียนของ Freshy ID: "+str(results)+"\n")
-    else
+    else:
         print("[O]คุณไม่มีการค้างการ Confirm โค้ดใดๆ")
 if master == 2:
     query = "SELECT state FROM `LineUserId` WHERE `userId` =\""+ sys.argv[2] +"\""
