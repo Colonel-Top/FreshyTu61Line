@@ -12,7 +12,7 @@ import sys
 if len(sys.argv) < 2:
     sys.exit(0)
 message = sys.argv[1]
-db = MySQLdb.connect("10.130.88.38","regcol","skr010527","coltroit" )
+db = MySQLdb.connect("10.130.90.185","regcol","skr010527","coltroit" )
 cur = db.cursor()
 
 #message = "Debugging "

@@ -55,7 +55,7 @@ def intornot(s):
 #line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
 status = 0
 #print("message")
-db = MySQLdb.connect("10.130.88.38","regcol","skr010527","coltroit" ,use_unicode=True, charset='utf8')
+db = MySQLdb.connect("10.130.90.185","regcol","skr010527","coltroit" ,use_unicode=True, charset='utf8')
 cur = db.cursor()
 
 
