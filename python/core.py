@@ -432,11 +432,9 @@ if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in 
 
 if 'ลงทะเบียนล่าสุด' in message:
     checknormaladmin()
-   
     query = "SELECT id,name,surname,nickname,disfood FROM freshies ORDER BY id DESC LIMIT 1"
     cur.execute(query)
     results = cur.fetchone()
-    
     if results == None:
         print('Empty or data not found!')
     else:
@@ -444,7 +442,7 @@ if 'ลงทะเบียนล่าสุด' in message:
         cur.execute(query)
         seatres = cur.fetchone()
         #print(results[1])
-        stringout= 'Code: [ ' + str(results[0]+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) +'\nSeatID: '
+        stringout= 'Code: [ ' + str(results[0])+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) +'\nSeatID: '
         if seatres != None:
             print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4]))
         else:
