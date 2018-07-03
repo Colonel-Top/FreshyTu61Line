@@ -429,6 +429,29 @@ if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in 
     db.commit()
     db.close()
     exit()
+
+if 'ลงทะเบียนล่าสุด' in message:
+    checknormaladmin()
+   
+    query = "SELECT id,name,surname,nickname,disfood FROM freshies ORDER BY id DESC LIMIT 1"
+    cur.execute(query)
+    results = cur.fetchone()
+    
+    if results == None:
+        print('Empty or data not found!')
+    else:
+        query = "SELECT seat_id FROM tickets WHERE freshy_id = " +str( results[0])
+        cur.execute(query)
+        seatres = cur.fetchone()
+        #print(results[1])
+        stringout= 'Code: [ ' + str(results[0]+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) +'\nSeatID: '
+        if seatres != None:
+            print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4]))
+        else:
+             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน/ไม่มีที่นั่ง'+'\nอาหารที่แพ้: '+str(results[4]))
+    db.close()
+    exit()
+    
 if len(message) >= 5 and 'c' in message and len(message) <= 7:
     checkmasteradmin()
     if(message[0:1] != 'c' and message[0:1] != 's'):
