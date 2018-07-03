@@ -744,7 +744,7 @@ for tmp in allmsg:
     if tmp in message and 'เอลเลท' in message:
         checknormaladmin()
         backf = ['ค่ะ','ค่าาาา','เหมี๊ยว ~']
-        print(random.choice(backf)
+        print(random.choice(backf))
         db.close()
         exit()
 allmsg =['helecho','Helecho','เอลเลท','เอลเลทโต้','เอล']              
