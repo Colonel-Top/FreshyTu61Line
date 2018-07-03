@@ -717,7 +717,7 @@ for tmp in allmsg:
         exit()    	
 allmsg =['thank','thanks','thx','ขอบคุณ','thank you','ขอบใจ','ขอบน้ำใจ']
 for tmp in allmsg:
-    if tmp in message and 'เอลเลทโต้':
+    if tmp in message and 'เอลเลท' in message:
         checknormaladmin()
         
         print('ค่ะ')
