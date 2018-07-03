@@ -229,7 +229,7 @@ if resultcheck[0] != 0:
 
 
 night = ['Goodnight','goodnight','ราตรีสวัสดิ์ค่ะ','กู้ดไนท์ค่ะ','ฝันดีค่ะ','อย่าลืมห่มผ้านะคะ','ราตรีสวัสดิ์ค่ะ','อากาศเปลี่ยนแปลงบ่อยดูแลสุขภาพนะคะ','ฝันดี','ไปนอน']
-listinsult = ['ตาย','บ้า','ห่วย','เกรียน','เหี้ย','สัส','ฟัคยู','ฟัค','หยิ่ง','แย่','ตีน','useless', 'use less','fuck','suck','dick','shit','bitch','ควย','kuy','noob','นูบ','นู้บ','หรี่','กาก','เวร','สถุน']
+listinsult = ['ตาย','บ้าบอ','ห่วย','เกรียน','เหี้ย','สัส','ฟัคยู','ฟัค','หยิ่ง','แย่','ตีน','useless', 'use less','fuck','suck','dick','shit','bitch','ควย','kuy','noob','นูบ','นู้บ','หรี่','กาก','เวร','สถุน']
 for tmp in listinsult:
     if tmp in message:
         reinsult2 = ['ผี','ผี','ดอก','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','บลิซซาร์ดไม่คว่ำถ้วย','แหวกกอหญ้า','บ้าห้าร้อยจำพวก','ปลวกใต้หลังคา','หน้าปลาจวด',
@@ -402,14 +402,17 @@ if master == 2:
     if results != 0 and len(message)<=5 and len(message)>=1:
         print("[!]คุณได้ค้างการ Confirm ลงทะเบียนของ Freshy ID: "+str(results)+"\n")    
 if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in message:
-    checknormaladmin()
+    
     if intornot(message) == True:
+        
         if int(message) <= 1000:
+            checknormaladmin()
             print("ERROR: To call code info number must > 1000")
             exit()
     elif intornot(message) == False:
             #print("ERROR: To call code info 4 characters must > 1000")
             exit()
+    checknormaladmin()
     query = "SELECT id,name,surname,nickname,disfood FROM freshies WHERE id = " + str(message)
     cur.execute(query)
     results = cur.fetchone()
@@ -750,7 +753,7 @@ for tmp in allmsg:
 allmsg =['helecho','Helecho','เอลเลท','เอลเลทโต้','เอล']              
 for tmp in allmsg:
     if tmp in message:
-        backf = ['ค่ะ','ค่ะ ?','มีอะไรให้้ช่วยหรือคะ ?','ค่าาาา','เหมียว ~']
+        backf = ['ค่ะ','ค่ะ ?','มีอะไรให้ช่วยหรือคะ ?','ค่าาาา','เหมียว ~']
         print(random.choice(backf))
         db.close()
         exit()
