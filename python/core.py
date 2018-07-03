@@ -719,7 +719,7 @@ allmsg =['thank','thanks','thx','ขอบคุณ','thank you','ขอบใ�
 for tmp in allmsg:
     if tmp in message and 'เอลเลทโต้':
         checknormaladmin()
-        message.random
+        
         print('ค่ะ')
         db.close()
         exit()   
