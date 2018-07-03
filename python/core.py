@@ -321,7 +321,7 @@ if '!info' == message:
     normalstaff = cur.fetchone()[0]
     cur.execute("SELECT COUNT(id) FROM `tickets`")
     ticket = cur.fetchone()[0]
-    cur.execute("SELECT COUNT(id) FROM `users`")
+    cur.execute("SELECT COUNT(id) FROM `freshies`")
     users = cur.fetchone()[0]
     #master
     cur.execute("SELECT COUNT(id) FROM `LineUserId`")
