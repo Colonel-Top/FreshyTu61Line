@@ -344,6 +344,7 @@ if '!info' == message:
             print("ยอดน้องเข้างานเพศชาย : "+str(boardmale) + " คน\nยอดน้องเข้างานเพศหญิง : "+ str(boardfemale)  + " คน\n")
     db.close()
     exit()
+
 if '!ann' in message:
     checkmasteradmin()
     line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
@@ -682,4 +683,43 @@ if len(message) >= 5 and 's' in message and len(message) <= 7:
     #
 #print(checkout)
 #print(letsend)
-	
+allmsg =['ข้อมูลลงทะเบียน','report การลงทะเบียน','report ลงทะเบียน','ยอดลงทะเบียน','รายงานการลงทะเบียน','รายงานทะเบียน','สรุปยอดลงทะเบียน','สรุปการลงทะเบียน','ลงทะเบียนตอนนี้']
+for tmp in allmsg:
+    if tmp in message:
+        checknormaladmin()
+        #normal
+        cur.execute("SELECT COUNT(id) FROM `NormalUserId`")
+        normalstaff = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(id) FROM `tickets`")
+        ticket = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(id) FROM `freshies`")
+        users = cur.fetchone()[0]
+        #master
+        cur.execute("SELECT COUNT(id) FROM `LineUserId`")
+        masterstaff = cur.fetchone()[0]
+        
+        cur.execute("SELECT COUNT(id) FROM `freshies` WHERE `gender`=\"ชาย\"")
+        maleusers = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(id) FROM `freshies` WHERE `gender`=\"หญิง\"")
+        femaleusers = cur.fetchone()[0]
+        cur.execute("SELECT COUNT(id) FROM `BanUserId`")
+        banstaff = cur.fetchone()[0]
+        if master >= 1:
+            print("รายงานค่ะ\n\nยอด Staff ทั่วไป: "+str(normalstaff) + " คน\nยอดคนเข้างานปัจจุบัน: "+str(ticket)+" คน\nยอดน้องลงทะเบียนในระบบ: "+str(users)+" คน")
+            if master == 2:
+                cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"ชาย\"")
+                boardmale = cur.fetchone()[0]
+                cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"หญิง\"")
+                boardfemale = cur.fetchone()[0]
+                print("\nยอด Staff ลงทะเบียนหน้างาน: "+str(masterstaff) +" คน\nยอดน้องลงทะเบียนเพศชาย : "+str(maleusers) + " คน\nยอดน้องลงทะเบียนเพศหญิง : "+ str(femaleusers)+ " คน\n")
+                print("ยอดน้องเข้างานเพศชาย : "+str(boardmale) + " คน\nยอดน้องเข้างานเพศหญิง : "+ str(boardfemale)  + " คน\n")
+        db.close()
+        exit()    	
+allmsg =['thank','thanks','thx','ขอบคุณ','thank you','ขอบใจ','ขอบน้ำใจ']
+for tmp in allmsg:
+    if tmp in message and 'เอลเลทโต้':
+        checknormaladmin()
+        message.random
+        print('ค่ะ')
+        db.close()
+        exit()   
