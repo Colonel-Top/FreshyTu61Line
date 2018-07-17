@@ -417,6 +417,24 @@ if master == 2:
     results = cur.fetchone()[0]
     if results != 0 and len(message)<=5 and len(message)>=1:
         print("[!]คุณได้ค้างการ Confirm ลงทะเบียนของ Freshy ID: "+str(results)+"\n")    
+if len(message) == 4 and 'f' in message:
+    checknormaladmin()
+    if(message[0:1] != 'f'):
+        exit()
+    message = message.replace('f','')
+    print("จำนวนพิเศษอาหารในไลน์: " + message)
+    
+    query = "SELECT COUNT(freshies.vegetarian)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\") AND freshies.vegetarian = 1"
+    cur.execute(query)
+    vegan = cur.fetchone()
+    
+    query = "SELECT COUNT(freshies.islamic)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\") AND freshies.islamic = 1"
+    cur.execute(query)
+    halal = cur.fetchone()
+    print("อาหารอิสลาม: " + str(halal[0]))
+    print("อาหารเจ: " + str(vegan[0]))
+    alls = 50 - int(halal) - int(vegan)
+    print("\nอาหารธรรมดา: "+str(alls))
 if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in message:
     
     if intornot(message) == True:
@@ -663,24 +681,6 @@ if message == "yes":
                         print("Error for add this code please try again\n(Due Internet Problem or There's no this code available in ticket)")
                         exit()
 
-if len(message) == 4 and 'f' in message:
-    print("FOOD")
-    if(message[0:1] != 'f'):
-        exit()
-    message = message.replace('f','')
-    print("จำนวนพิเศษอาหารในไลน์: " + message)
-    
-    query = "SELECT COUNT(freshies.vegetarian)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\") AND freshies.vegetarian = 1"
-    cur.execute(query)
-    vegan = cur.fetchone()
-    
-    query = "SELECT COUNT(freshies.islamic)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\") AND freshies.islamic = 1"
-    cur.execute(query)
-    halal = cur.fetchone()
-    print("อาหารอิสลาม: " + str(halal[0]))
-    print("อาหารเจ: " + str(vegan[0]))
-    alls = 50 - int(halal) - int(vegan)
-    print("\nอาหารธรรมดา: "+str(alls))
 
 if len(message) >= 5 and 's' in message and len(message) <= 7:
     checkmasteradmin()
