@@ -468,7 +468,7 @@ if len(message) == 6 and 'cl' in message:
         print("Code: "+message+" ไม่ได้ทำการ Checkout")
         exit()
     else:
-        print("Code นี้ได้ทำการ Check-out จากงานเรียบร้อยแล้วเมื่อเวลาสากล UTC : "+str(checkinornot[1]))
+        print("Code นี้ได้ทำการ Check-out จากงานเรียบร้อยแล้วเมื่อเวลา: "+str(checkinornot[1]))
     exit()
 
 if len(message) == 4 and 'f' in message:
