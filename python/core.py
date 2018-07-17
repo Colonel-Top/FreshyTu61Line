@@ -42,7 +42,8 @@ def getKey(keyin):
 
 
 message = sys.argv[1]
-
+message = message.lower()
+print(message)
 
 result = ''
 #print(result)
@@ -201,7 +202,22 @@ if  message == "!nreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     
     print("Normal Register Change status to "+onoroff)
     exit()
-
+if  message == "!freshyreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
+    query = "SELECT state FROM server WHERE name = \"freshyreg\""
+    cur.execute(query)
+    reg = cur.fetchone()
+    reg = reg[0]
+    onoroff = "off"
+    upque = "UPDATE server SET state=0 WHERE name=\"freshyreg\""
+    if reg == 0:
+         upque = "UPDATE server SET state=1 WHERE name=\"freshyreg\""
+         onoroff = "on"
+    cur.execute(upque)
+    db.commit()
+    db.close()
+    
+    print("Freshy Register Change status to "+onoroff)
+    exit()
 def printerror():
     error = ["Hey Hey! you don't have this permission, Sorry i can't proceed your request bitch",
              "Ahhh i don't think you can use this permission, sorry i'm out",
@@ -646,8 +662,34 @@ if message == "yes":
                         db.close()
                         print("Error for add this code please try again\n(Due Internet Problem or There's no this code available in ticket)")
                         exit()
+
+if len(message) == 5 and 'f' in message:
+    if(message[0:1] != 'f'):
+        exit()
+    message = message.replace('f','')
+    print("จำนวนพิเศษอาหารในไลน์: " + message)
+    
+    query = "SELECT COUNT(freshies.vegetarian)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \"".message."%\") AND freshies.vegetarian = 1"
+    cur.execute(query)
+    vegan = cur.fetchone()
+    
+    query = "SELECT COUNT(freshies.islamic)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \"".message."%\") AND freshies.islamic = 1"
+    cur.execute(query)
+    halal = cur.fetchone()
+    print("อาหารอิสลาม: " + str(halal[0]))
+    print("อาหารเจ: " + str(vegan[0]))
+    alls = 50 - int(halal) - int(vegan)
+    print("\nอาหารธรรมดา: "+str(alls))
+
 if len(message) >= 5 and 's' in message and len(message) <= 7:
     checkmasteradmin()
+    query = "SELECT state FROM `server` WHERE name =\""+ "freshyreg" +"\""
+    cur.execute(query)
+    res = cur.fetchone()
+    res = res[0]
+    if (res == 0):
+        print("Register closed Disallowed Contact Master Administrator")
+        exit()
     if(message[0:1] != 'c' and message[0:1] != 's'):
         print("Did u mean sxxxx ? (Use for submit)")
         print("Did u mean cxxxx ? (Use for cancel)")
