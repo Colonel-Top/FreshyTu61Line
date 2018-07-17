@@ -663,7 +663,7 @@ if message == "yes":
                         print("Error for add this code please try again\n(Due Internet Problem or There's no this code available in ticket)")
                         exit()
 
-if len(message) == 5 and 'f' in message:
+if len(message) == 4 and 'f' in message:
     if(message[0:1] != 'f'):
         exit()
     message = message.replace('f','')
