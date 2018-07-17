@@ -459,16 +459,16 @@ if len(message) == 6 and 'cc' in message:
 if len(message) == 6 and 'cl' in message:
     checkmasteradmin()
     message = message.replace('cl','')
-    query = "SELECT COUNT(id) FROM `checkout` WHERE code=\""+message+"\""
+    query = "SELECT COUNT(id),date FROM `checkout` WHERE code=\""+message+"\""
     cur.execute(query)
     
     checkinornot = cur.fetchone()
     #print(checkinornot[0])
     if(checkinornot[0] == 0):
-        print("Code: "+message+" Not Found")
+        print("Code: "+message+" ไม่ได้ทำการ Checkout")
         exit()
     else:
-        print("Code Already Check-out")
+        print("Code นี้ได้ทำการ Check-out จากงานเรียบร้อยแล้วเมื่อเวลา: "+str(checkinornot[1]))
     exit()
 
 if len(message) == 4 and 'f' in message:
