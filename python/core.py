@@ -425,7 +425,7 @@ if len(message) == 6 and 'co' in message:
     cur.execute(query)
     
     checkinornot = cur.fetchone()
-    if(checkinornot[0] != 0)
+    if(checkinornot[0] != 0):
         print("Code: "+message+" Already Checkout")
         exit()
     query = "INSERT INTO `checkout` (code) VALUES (\""+message+"\")"
@@ -439,7 +439,7 @@ if len(message) == 6 and 'cc' in message:
     cur.execute(query)
     
     checkinornot = cur.fetchone()
-    if(checkinornot[0] != 0)
+    if(checkinornot[0] != 0):
         print("Code: "+message+" Not Found")
         exit()
     query = "DELETE FROM `checkout` WHERE code=\""+message+"\""
@@ -459,7 +459,7 @@ if len(message) == 6 and 'cl' in message:
     cur.execute(query)
     
     checkinornot = cur.fetchone()
-    if(checkinornot[0] != 0)
+    if(checkinornot[0] != 0):
         print("Code: "+message+" Not Found")
         exit()
     else:
