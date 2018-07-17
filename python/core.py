@@ -433,7 +433,7 @@ if len(message) == 4 and 'f' in message:
     halal = cur.fetchone()
     print("อาหารอิสลาม: " + str(halal[0]))
     print("อาหารเจ: " + str(vegan[0]))
-    alls = 50 - int(halal) - int(vegan)
+    alls = 50 - int(halal[0]) - int(vegan[0])
     print("\nอาหารธรรมดา: "+str(alls))
 if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in message:
     
