@@ -669,11 +669,11 @@ if len(message) == 5 and 'f' in message:
     message = message.replace('f','')
     print("จำนวนพิเศษอาหารในไลน์: " + message)
     
-    query = "SELECT COUNT(freshies.vegetarian)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \"".message."%\") AND freshies.vegetarian = 1"
+    query = "SELECT COUNT(freshies.vegetarian)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\") AND freshies.vegetarian = 1"
     cur.execute(query)
     vegan = cur.fetchone()
     
-    query = "SELECT COUNT(freshies.islamic)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \"".message."%\") AND freshies.islamic = 1"
+    query = "SELECT COUNT(freshies.islamic)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\") AND freshies.islamic = 1"
     cur.execute(query)
     halal = cur.fetchone()
     print("อาหารอิสลาม: " + str(halal[0]))
