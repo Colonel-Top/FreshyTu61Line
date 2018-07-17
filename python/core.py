@@ -664,6 +664,7 @@ if message == "yes":
                         exit()
 
 if len(message) == 4 and 'f' in message:
+    print("FOOD")
     if(message[0:1] != 'f'):
         exit()
     message = message.replace('f','')
