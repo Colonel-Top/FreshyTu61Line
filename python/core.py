@@ -441,7 +441,7 @@ if len(message) == 6 and 'cc' in message:
     cur.execute(query)
     
     checkinornot = cur.fetchone()
-    if(checkinornot[0] != 0):
+    if(checkinornot[0] == 0):
         print("Code: "+message+" Not Found")
         exit()
     query = "DELETE FROM `checkout` WHERE code=\""+message+"\""
