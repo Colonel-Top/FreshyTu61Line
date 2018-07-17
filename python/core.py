@@ -432,7 +432,7 @@ if len(message) == 4 and 'f' in message:
     cur.execute(query)
     halal = cur.fetchone()
 
-    query = "SELECT COUNT(freshies)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\")"
+    query = "SELECT COUNT(freshies.id)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\")"
     cur.execute(query)
     normf = cur.fetchone()
     
