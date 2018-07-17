@@ -43,7 +43,7 @@ def getKey(keyin):
 
 message = sys.argv[1]
 message = message.lower()
-print(message)
+#print(message)
 
 result = ''
 #print(result)
