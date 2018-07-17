@@ -431,10 +431,15 @@ if len(message) == 4 and 'f' in message:
     query = "SELECT COUNT(freshies.islamic)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\") AND freshies.islamic = 1"
     cur.execute(query)
     halal = cur.fetchone()
+
+    query = "SELECT COUNT(freshies)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\")"
+    cur.execute(query)
+    normf = cur.fetchone()
+    
     print("อาหารอิสลาม: " + str(halal[0]))
     print("อาหารเจ: " + str(vegan[0]))
     alls = 50 - int(halal[0]) - int(vegan[0])
-    print("\nอาหารธรรมดา: "+str(alls))
+    print("อาหารธรรมดา: "+str(normf[0]))
 if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in message:
     
     if intornot(message) == True:
