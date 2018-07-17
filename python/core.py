@@ -459,6 +459,7 @@ if len(message) == 6 and 'cl' in message:
     cur.execute(query)
     
     checkinornot = cur.fetchone()
+    print(checkinornot[0])
     if(checkinornot[0] != 0):
         print("Code: "+message+" Not Found")
         exit()
