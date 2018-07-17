@@ -416,7 +416,56 @@ if master == 2:
     cur.execute(query)
     results = cur.fetchone()[0]
     if results != 0 and len(message)<=5 and len(message)>=1:
-        print("[!]คุณได้ค้างการ Confirm ลงทะเบียนของ Freshy ID: "+str(results)+"\n")    
+        print("[!]คุณได้ค้างการ Confirm ลงทะเบียนของ Freshy ID: "+str(results)+"\n")
+
+if len(message) == 6 and 'co' in message:
+    checkmasteradmin()
+    message = message.replace('co','')
+    query = "SELECT COUNT(id) FROM `checkout` WHERE code=\""+message+"\""
+    cur.execute(query)
+    
+    checkinornot = cur.fetchone()
+    if(checkinornot[0] != 0)
+        print("Code: "+message+" Already Checkout")
+        exit()
+    query = "INSERT INTO `checkout` (code) VALUES (\""+message+"\")"
+    cur.execute(query)
+    print("Check-out Successfuly with Code: "+str(message))
+    exit()
+if len(message) == 6 and 'cc' in message:
+    checkmasteradmin()
+    message = message.replace('cc','')
+    query = "SELECT COUNT(id) FROM `checkout` WHERE code=\""+message+"\""
+    cur.execute(query)
+    
+    checkinornot = cur.fetchone()
+    if(checkinornot[0] != 0)
+        print("Code: "+message+" Not Found")
+        exit()
+    query = "DELETE FROM `checkout` WHERE code=\""+message+"\""
+    cur.execute(query)
+    print("Check-out Deleted with Code: "+str(message))
+    line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
+        stringcancel = "[!]Freshy ID: " + str(message)+" ได้ถูกยกเลิกการ Checkout" 
+        cur.execute("SELECT userId FROM `LineUserId`")
+        for row in cur:
+            if row[0] != None:
+                line_bot_api.push_message(row[0], TextSendMessage(stringcancel))
+    exit()
+if len(message) == 6 and 'cl' in message:
+    checkmasteradmin()
+    message = message.replace('cl','')
+    query = "SELECT COUNT(id) FROM `checkout` WHERE code=\""+message+"\""
+    cur.execute(query)
+    
+    checkinornot = cur.fetchone()
+    if(checkinornot[0] != 0)
+        print("Code: "+message+" Not Found")
+        exit()
+    else:
+        print("Code Already Check-out")
+    exit()
+
 if len(message) == 4 and 'f' in message:
     checknormaladmin()
     if(message[0:1] != 'f'):
