@@ -506,7 +506,7 @@ if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in 
             #print("ERROR: To call code info 4 characters must > 1000")
             exit()
     checknormaladmin()
-    query = "SELECT id,name,surname,nickname,disfood FROM freshies WHERE id = " + str(message)
+    query = "SELECT id,name,surname,nickname,disfood,disease FROM freshies WHERE id = " + str(message)
     cur.execute(query)
     results = cur.fetchone()
     
@@ -519,9 +519,9 @@ if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in 
         #print(results[1])
         stringout= 'Code: [ ' + message+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) +'\nSeatID: '
         if seatres != None:
-            print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4]))
+            print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4])+'โรคประจำตัว: ' +str(results[5]))
         else:
-             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน/ไม่มีที่นั่ง'+'\nอาหารที่แพ้: '+str(results[4]))
+             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน/ไม่มีที่นั่ง'+'\nอาหารที่แพ้: '+str(results[4])+'โรคประจำตัว: ' +str(results[5]))
     db.commit()
     db.close()
     exit()
