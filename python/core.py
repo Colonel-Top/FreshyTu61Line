@@ -521,7 +521,7 @@ if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in 
         if seatres != None:
             print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]))
         else:
-             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน/ไม่มีที่นั่ง'+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]))
+             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน'+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]))
     db.commit()
     db.close()
     exit()
