@@ -184,7 +184,9 @@ if  message == "!roundrobin":
     print ("[Server: "+socket.gethostname()+" ]")
     exit()
 
-
+if  message == "!update":
+    print ("change value from 4500 to 5000")
+    exit()
     
 if  message == "!nreg" and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     query = "SELECT state FROM server WHERE name = \"nregister\""
