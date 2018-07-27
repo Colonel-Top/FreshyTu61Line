@@ -353,6 +353,7 @@ if '!info' == message:
     banstaff = cur.fetchone()[0]
     if master >= 1:
         print("[Server Status Report]\n\nยอด Staff ทั่วไป: "+str(normalstaff) + " คน\nยอดคนเข้างานปัจจุบัน: "+str(ticket)+" คน\nยอดน้องลงทะเบียนในระบบ: "+str(users)+" คน")
+        
         if master == 2:
             cur.execute(" SELECT COUNT(freshies.id) FROM `freshies` JOIN `tickets` ON (freshies.id) = tickets.freshy_id WHERE freshies.gender=\"ชาย\"")
             boardmale = cur.fetchone()[0]
@@ -496,6 +497,39 @@ if len(message) == 4 and 'f' in message:
     print("อาหารเจ: " + str(vegan[0]))
     alls = 50 - int(halal[0]) - int(vegan[0])
     print("อาหารธรรมดา: "+str(normf[0]))
+
+if len(message) == 5 and 's' not in message and 'c' not in message :
+    
+    if intornot(message) == True:
+        
+        if int(message) <= 1000:
+            checknormaladmin()
+            print("ERROR: To call code info number must > 1000")
+            exit()
+    elif intornot(message) == False:
+            #print("ERROR: To call code info 4 characters must > 1000")
+            exit()
+    checknormaladmin()
+    query = "SELECT id,name,surname,nickname,disfood,disease,telephone FROM freshies WHERE id IN (SELECT freshy_id FROM tickets WHERE seat_id = "+"\""+str(message)+"\"" + ")"
+    cur.execute(query)
+    results = cur.fetchone()
+    
+    if results == None:
+        print('Code: '+message+' not found!')
+    else:
+        query = "SELECT seat_id FROM tickets WHERE freshy_id = " +str( results[0])
+        cur.execute(query)
+        seatres = cur.fetchone()
+        #print(results[1])
+        stringout= 'Code: [ ' + message+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) +'\nSeatID: '
+        if seatres != None:
+            print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]) + '\nเบอร์โทร: '+str(results[6]))
+        else:
+             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน'+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]) + '\nเบอร์โทร: '+str(results[6]))
+    db.commit()
+    db.close()
+    exit()
+    
 if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in message:
     
     if intornot(message) == True:
