@@ -678,7 +678,7 @@ if message == "yes":
                     insquery = "INSERT INTO `tickets` (`freshy_id`,`seat_id`) VALUES (" + "\""+ str(results[0]) +"\"" + "," +  "\""+ "gen" + "\""  +")"
                     cur.execute(insquery)
                     lastId= getKey( int(cur.lastrowid)+1000)
-                    if(int(cur.lastrowid) > 4500):
+                    if(int(cur.lastrowid) > 5000):
                         db.rollback()
                         print("ERROR Seat are full already\n\nNO TICKET !!!")
                         exit()
@@ -708,7 +708,7 @@ if message == "yes":
                         tmp1 = (int(blankid))+1000
                         tmp1 = str(tmp1)
                         lastId= getKey(tmp1)
-                        if(int(blankid) > 4500):
+                        if(int(blankid) > 5000):
                             db.rollback()
                             upquery = ("UPDATE `LineUserId` SET `state`=\"" + "0" +"\" WHERE `userId` = "+ "\""+sys.argv[2] + "\"" )
                             cur.execute(upquery)
