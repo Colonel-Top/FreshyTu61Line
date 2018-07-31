@@ -521,7 +521,7 @@ if len(message) == 5 and 's' not in message and 'c' not in message :
         cur.execute(query)
         seatres = cur.fetchone()
         #print(results[1])
-        cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
+        cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(results[1]),str(results[2])))
         numcode = cur.fetchone()
         if numcode == None:
             numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
@@ -559,7 +559,7 @@ if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in 
         cur.execute(query)
         seatres = cur.fetchone()
         #print(results[1])
-        cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
+        cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(results[1]),str(results[2])))
         numcode = cur.fetchone()
         if numcode == None:
             numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
