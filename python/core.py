@@ -336,8 +336,14 @@ if '!reply' in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     checkmasteradmin()
     line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
     message = message.replace('!reply','')
-    newmsg = "Developer: " + message
-    line_bot_api.push_message(newmsg, TextSendMessage(message))
+    realmsg = message[34:]
+    personmsg = message[0:33]
+    newmsg = "Developer: " + realmsg
+    try:
+        line_bot_api.push_message(personmsg, TextSendMessage(newmsg))
+    except Exception as e:
+        print(e)
+        exit()
     print("Message Sent!")
     exit()
 if '!info' == message:
