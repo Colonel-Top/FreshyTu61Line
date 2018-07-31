@@ -829,6 +829,7 @@ if len(message) >= 5 and 's' in message and len(message) <= 7:
         #print(query)
         resultsc = cur.fetchone()
         #print(results)
+        print("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
         cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
         numcode = cur.fetchone()
         if numcode == None:
