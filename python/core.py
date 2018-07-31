@@ -324,13 +324,21 @@ if '!help' == message:
 if '!regann' in message:
     checkmasteradmin()
     line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
-    message = message.replace('!regpost','ประกาศสตาฟฝ่ายทะเบียน: ')
+    message = message.replace('!regann','ประกาศสตาฟฝ่ายทะเบียน: ')
     cur.execute("SELECT userId FROM `LineUserId`")
     for row in cur:
         if row[0] != None:
             line_bot_api.push_message(row[0], TextSendMessage(message))
     db.close()
     print("การประกาศถึงสตาฟฝ่ายทะเบียน: \n["+message +"] \nได้ทำการประกาศเรียบร้อย")
+    exit()
+if '!reply' in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
+    checkmasteradmin()
+    line_bot_api = LineBotApi('AgIQnH2clTRGpu74YMKmHiVMvWsLo0Eg7qOum7xcoaKSjcAp24BfinEtfMTPefvMq9zYr/MnW+MLtPr8+Kd5vKL+VQIBIHWB9grdWkqr3c1vemv4bBAP5n9nRYfG988Z+s8Ps6pfh6mvo+TKMtcqIgdB04t89/1O/w1cDnyilFU=')
+    message = message.replace('!reply','')
+    newmsg = "Developer: " + message
+    line_bot_api.push_message(newmsg, TextSendMessage(message))
+    print("Message Sent!")
     exit()
 if '!info' == message:
     checknormaladmin()
