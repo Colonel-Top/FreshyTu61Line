@@ -559,11 +559,18 @@ if len(message) == 4 or len(message) == 5 and 's' not in message and 'c' not in 
         cur.execute(query)
         seatres = cur.fetchone()
         #print(results[1])
+        cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
+        numcode = cur.fetchone()
+        if numcode == None:
+            numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
+        else:
+            numcode = str(numcode[0])
+            
         stringout= 'Code: [ ' + message+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) +'\nSeatID: '
         if seatres != None:
-            print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]))
+            print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]) + "\nเลขนักศึกษา: " + numcode)
         else:
-             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน'+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]))
+             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน'+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5])+ "\nเลขนักศึกษา: " + numcode)
     db.commit()
     db.close()
     exit()
