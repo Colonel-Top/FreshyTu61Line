@@ -500,7 +500,7 @@ if len(message) == 4 and 'f' in message:
 
 if len(message) == 5 and 's' not in message and 'c' not in message :
     
-    if intornot(message) == True:
+    '''if intornot(message) == True:
         
         if int(message) <= 1000:
             checknormaladmin()
@@ -508,7 +508,7 @@ if len(message) == 5 and 's' not in message and 'c' not in message :
             exit()
     elif intornot(message) == False:
             #print("ERROR: To call code info 4 characters must > 1000")
-            exit()
+            exit()'''
     checknormaladmin()
     query = "SELECT id,name,surname,nickname,disfood,disease,telephone FROM freshies WHERE id IN (SELECT freshy_id FROM tickets WHERE seat_id = "+"\""+str(message)+"\"" + ")"
     cur.execute(query)
@@ -521,11 +521,17 @@ if len(message) == 5 and 's' not in message and 'c' not in message :
         cur.execute(query)
         seatres = cur.fetchone()
         #print(results[1])
-        stringout= 'Code: [ ' + message+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) +'\nSeatID: '
+        cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
+        numcode = cur.fetchone()
+        if numcode == None:
+            numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
+        else:
+            numcode = str(numcode[0])
+        stringout= 'Code: [ ' + message+' ]\nชื่อ: '+str(results[1]) +'\nนามสกุล: '+str(results[2]) +'\nชื่อเล่น: '+str(results[3]) + "\nรหัสนักศึกษา: "+ numcode +'\nSeatID: '
         if seatres != None:
             print (stringout+seatres[0]+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]) + '\nเบอร์โทร: '+str(results[6]))
         else:
-             print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน'+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]) + '\nเบอร์โทร: '+str(results[6]))
+            print (stringout+' ยังไม่ได้ลงทะเบียนเข้างาน'+'\nอาหารที่แพ้: '+str(results[4])+'\nโรคประจำตัว: ' +str(results[5]) + '\nเบอร์โทร: '+str(results[6]))
     db.commit()
     db.close()
     exit()
@@ -808,7 +814,7 @@ if len(message) >= 5 and 's' in message and len(message) <= 7:
     query = "SELECT state FROM `LineUserId` WHERE `userId` =\""+ sys.argv[2] +"\""
     cur.execute(query)
     resultsc = cur.fetchone()
-
+    numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
     if resultsc[0] != 0:
         print("นี่คือข้อมูลการค้างการ Confirm ลงทะเบียนของ Freshy ID: "+str(resultsc[0]) )
         query = "SELECT id,name,surname,nickname FROM `freshies` WHERE `id` = \"" + str(resultsc[0]) + "\""
@@ -816,7 +822,13 @@ if len(message) >= 5 and 's' in message and len(message) <= 7:
         #print(query)
         resultsc = cur.fetchone()
         #print(results)
-        stringout= 'Code: [ ' + str(resultsc[0])+' ]\nName: '+str(resultsc[1]) +'\nSurname: '+str(resultsc[2]) +'\nNickname: '+str(resultsc[3]) +'\n\nStudent ID: 61xxxxxxx\n\nกรุณาตรวจสอบข้อมูลว่าถูกต้องและยืนยันโดยพิมพ์ (yes/no)'
+        cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
+        numcode = cur.fetchone()
+        if numcode == None:
+            numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
+        else:
+            numcode = str(numcode[0])
+        stringout= 'Code: [ ' + str(resultsc[0])+' ]\nName: '+str(resultsc[1]) +'\nSurname: '+str(resultsc[2]) +'\nNickname: '+str(resultsc[3]) +'\n\nStudent ID: '+numcode+'\n\nกรุณาตรวจสอบข้อมูลว่าถูกต้องและยืนยันโดยพิมพ์ (yes/no)'
         print(stringout)
         exit()
     
@@ -834,7 +846,7 @@ if len(message) >= 5 and 's' in message and len(message) <= 7:
     upquery = ("UPDATE `LineUserId` SET `state`=\"" + str(message) +"\" WHERE `userId` = "+ "\""+sys.argv[2] + "\"" )
     cur.execute(upquery)
     db.commit()
-    stringout= 'Code: [ ' + str(message)+' ]\nName: '+str(results[1]) +'\nSurname: '+str(results[2]) +'\nNickname: '+str(results[3]) +'\n\nStudent ID: 61xxxxxxx\n\nกรุณาตรวจสอบข้อมูลว่าถูกต้องและยืนยันโดยพิมพ์ (yes/no)'
+    stringout= 'Code: [ ' + str(message)+' ]\nName: '+str(results[1]) +'\nSurname: '+str(results[2]) +'\nNickname: '+str(results[3]) +'\n\nStudent ID: '+numcode+'\n\nกรุณาตรวจสอบข้อมูลว่าถูกต้องและยืนยันโดยพิมพ์ (yes/no)'
     print(stringout)
     db.close()
 
