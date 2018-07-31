@@ -818,10 +818,18 @@ if len(message) >= 5 and 's' in message and len(message) <= 7:
         print('Code: '+message+' not found!')
         db.close()
         exit()
+    numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
+    cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(results[1]),str(results[2])))
+    numcode = cur.fetchone()
+    if numcode == None:
+        numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
+    else:
+        numcode = str(numcode[0])
     query = "SELECT state FROM `LineUserId` WHERE `userId` =\""+ sys.argv[2] +"\""
     cur.execute(query)
     resultsc = cur.fetchone()
-    numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
+    
+    
     if resultsc[0] != 0:
         print("นี่คือข้อมูลการค้างการ Confirm ลงทะเบียนของ Freshy ID: "+str(resultsc[0]) )
         query = "SELECT id,name,surname,nickname FROM `freshies` WHERE `id` = \"" + str(resultsc[0]) + "\""
@@ -829,13 +837,7 @@ if len(message) >= 5 and 's' in message and len(message) <= 7:
         #print(query)
         resultsc = cur.fetchone()
         #print(results)
-        print("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
-        cur.execute("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
-        numcode = cur.fetchone()
-        if numcode == None:
-            numcode = "ไม่พบเลขนักศึกษา MATCH ชื่อ,นามสกุลนี้"
-        else:
-            numcode = str(numcode[0])
+        #print("SELECT STUDENTCODE FROM `reg_data` WHERE STUDENTNAME=\"{}\" AND STUDENTSURNAME=\"{}\"".format(str(resultsc[1]),str(resultsc[2])))
         stringout= 'Code: [ ' + str(resultsc[0])+' ]\nName: '+str(resultsc[1]) +'\nSurname: '+str(resultsc[2]) +'\nNickname: '+str(resultsc[3]) +'\n\nStudent ID: '+numcode+'\n\nกรุณาตรวจสอบข้อมูลว่าถูกต้องและยืนยันโดยพิมพ์ (yes/no)'
         print(stringout)
         exit()
