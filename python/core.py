@@ -339,6 +339,9 @@ if '!reply' in message and sys.argv[2] == "Ufb00beda08083bcf402fbd2160b75574":
     realmsg = message[34:]
     personmsg = message[0:33]
     newmsg = "Developer: " + realmsg
+    print(realmsg)
+    print(personmsg)
+    
     try:
         line_bot_api.push_message(personmsg, TextSendMessage(newmsg))
     except Exception as e:
