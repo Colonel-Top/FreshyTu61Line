@@ -515,7 +515,7 @@ if len(message) == 5 and 's' not in message and 'c' not in message :
     results = cur.fetchone()
     
     if results == None:
-        print('Code: '+message+' not found!')
+        print('Seat: '+message+' not found!')
     else:
         query = "SELECT seat_id FROM tickets WHERE freshy_id = " +str( results[0])
         cur.execute(query)
