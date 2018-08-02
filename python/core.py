@@ -513,7 +513,7 @@ if len(message) == 4 and 'f' in message:
     alls = 50 - int(halal[0]) - int(vegan[0])
     print("อาหารธรรมดา: "+str(normf[0]))
 
-if len(message) == 5 and 's' not in message and 'c' not in message :
+if len(message) == 5 or len(message) == 6 and 's' not in message and 'c' not in message :
     
     '''if intornot(message) == True:
         
