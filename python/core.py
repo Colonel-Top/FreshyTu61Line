@@ -493,7 +493,8 @@ if len(message) == 4 and 'f' in message:
     checknormaladmin()
     if(message[0:1] != 'f'):
         exit()
-    message = message.replace('f','')
+    message = message[1:]
+    #message = message.replace('f','')
     print("จำนวนพิเศษอาหารในไลน์: " + message)
     
     query = "SELECT COUNT(freshies.vegetarian)FROM freshies WHERE freshies.id in (SELECT freshy_id from tickets where seat_id like \""+message+"%\") AND freshies.vegetarian = 1"
